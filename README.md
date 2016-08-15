@@ -49,3 +49,7 @@ Add `ignore = dirty` to each submodule definition:
         path = vim/bundle/vim-javascript
         url = http://github.com/pangloss/vim-javascript.git
         ignore = dirty
+
+## Update Plugins ##
+    cd ~/dotfiles
+    git submodule foreach git pull origin master
