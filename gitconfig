@@ -1,0 +1,11 @@
+[user]
+	email = it.miguelfernandes@gmail.com
+	name = Miguel Fernandes
+[push]
+	default = current
+[color]
+	ui = true
+[alias]
+	llog = log --oneline
+[github]
+	user = itmiguelfernandes

@@ -154,3 +154,7 @@
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
   ignore = dirty
+[submodule "vim/bundle/vim-javascript"]
+	path = vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+  ignore = dirty
