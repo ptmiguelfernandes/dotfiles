@@ -64,6 +64,7 @@ let NERDTreeShowHidden=1
 cd ~/projects
 map <Leader>nt :NERDTree %:p:h<CR>
 map <Leader>ntt :NERDTreeToggle<CR>
+map <F8> :NERDTreeToggle<CR>
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
