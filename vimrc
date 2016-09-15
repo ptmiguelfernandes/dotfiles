@@ -123,6 +123,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+map <F7> ::SyntasticToggleMode<CR>
+
 "Bind nohl to F3
 nnoremap <F3> :nohl<CR>
 

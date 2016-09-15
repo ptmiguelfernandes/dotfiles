@@ -273,27 +273,11 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; Every time when the neotree window is opened, let it find current file and jump to node.
-  (setq neo-smart-open t)
+  (setq exec-path-from-shell-arguments '("-l"))
   (global-set-key [f8] 'neotree-toggle)
   ;; If you use the find-file-in-project (ffip) library, you can open NeoTree at your directory root by adding this code to your .emacs.d:
-  (defun neotree-project-dir ()
-    "Open NeoTree using the git root."
-    (interactive)
-    (let ((project-dir (ffip-project-root))
-          (file-name (buffer-file-name)))
-      (if project-dir
-          (progn
-            (neotree-dir project-dir)
-            (neotree-find file-name))
-        (message "Could not find git project root."))))
   ;; When running projectile-switch-project (C-c p p), neotree will change root automatically.
-  (setq projectile-switch-project-action 'neotree-projectile-action)
   ;; If you use evil-mode, by default some of evil key bindings conflict with neotree-mode keys. For example, you cannot use q to hide NeoTree. To make NeoTree key bindings in effect, you can bind those keys in evil-normal-state-local-map in neotree-mode-hook, as shown in below code:
-  (add-hook 'neotree-mode-hook
-            (lambda ()
-              (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-              (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
-
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-hook 'ruby-mode-hook 'minitest-mode)
   (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
