@@ -8,4 +8,6 @@
 [alias]
 	llog = log --oneline
 [github]
-	user = itmiguelfernandes
+	user = ptmiguelfernandes
+[credential]
+	helper = cache --timeout=3600

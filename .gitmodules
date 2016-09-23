@@ -156,5 +156,5 @@
   ignore = dirty
 [submodule "vim/bundle/vim-snippets"]
 	path = vim/bundle/vim-snippets
-	url = https://github.com/itmiguelfernandes/vim-snippets
+	url = https://github.com/ptmiguelfernandes/vim-snippets
   ignore = dirty
