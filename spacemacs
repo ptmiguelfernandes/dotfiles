@@ -37,7 +37,7 @@ values."
      search-engine
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t
+                      ;; auto-completion-enable-snippets-in-popup t
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-complete-with-key-sequence nil
@@ -272,10 +272,17 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (display-time-mode 1)
+
+  (setq shell-file-name "bash")
+  (setq shell-command-switch "-ic")
+
+  (setq projectile-switch-project-action 'neotree-projectile-action)
 
   ;; Every time when the neotree window is opened, let it find current file and jump to node.
-  (setq exec-path-from-shell-arguments '("-l"))
+  ;; (setq exec-path-from-shell-arguments '("-l"))
   (global-set-key [f8] 'neotree-toggle)
+
   (global-set-key (kbd "<C-down>") 'shrink-window)  
   (global-set-key (kbd "<C-up>") 'enlarge-window)  
   (global-set-key (kbd "<C-right>") 'shrink-window-horizontally)  
@@ -318,6 +325,8 @@ you should place your code here."
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
+ '(display-time-day-and-date t)
+ '(explicit-bash-args (quote ("--noediting" "-i")))
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-symbol-colors
    (--map

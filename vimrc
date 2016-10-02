@@ -144,7 +144,7 @@ nnoremap <silent> <Leader>l :exe "resize " . (winwidth(0) * 2/3)<CR>
 
 "vim-instant-markdown - consume less resources. stop realtime.
 let g:instant_markdown_slow = 1
-" let g:instant_markdown_autostart = 0
+let g:instant_markdown_autostart = 0
 
 "vim-gist
 let g:gist_clip_command = 'xclip -selection clipboard'
