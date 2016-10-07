@@ -22,6 +22,7 @@ set noswapfile
 set langmenu=en_US
 " spell check
 autocmd BufRead,BufNewFile *.md setlocal spell
+set nospell
 " Disable all blinking
 set guicursor+=n:hor5-Cursor/lCursor
 set guicursor+=i:ver5-Cursor/lCursor

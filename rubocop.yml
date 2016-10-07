@@ -38,3 +38,6 @@ Style/ClassAndModuleChildren:
   EnforcedStyle: compact
   Exclude:
     - "config/application.rb"
+
+Performance/Casecmp:
+  Enabled: false

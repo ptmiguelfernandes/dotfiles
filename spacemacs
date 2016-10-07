@@ -276,14 +276,13 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (display-time-mode 1)
 
+  ;; update current git branch
+  (global-auto-revert-mode 1)
+  (setq auto-revert-check-vc-info t)
 
   (setq shell-file-name "bash")
   (setq shell-command-switch "-ic")
 
-  (setq projectile-switch-project-action 'neotree-projectile-action)
-
-  ;; Every time when the neotree window is opened, let it find current file and jump to node.
-  ;; (setq exec-path-from-shell-arguments '("-l"))
   (global-set-key [f8] 'neotree-toggle)
 
   (global-set-key (kbd "<C-down>") 'shrink-window)  
