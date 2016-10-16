@@ -41,6 +41,7 @@ values."
                       auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-private-snippets-directory nil)
      (ruby :variables
+           ruby-enable-ruby-on-rails-support t
            ruby-version-manager 'rvm
            ruby-test-runner 'ruby-test)
      ruby-on-rails
@@ -253,6 +254,15 @@ values."
    dotspacemacs-whitespace-cleanup nil
    ))
 
+(defun my-setup-indent (n)
+  (setq javascript-indent-level n) ; javascript-mode
+  (setq js-indent-level n) ; js-mode
+  (setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset n) ; web-mode, css in html file
+  (setq web-mode-code-indent-offset n) ; web-mode, js code in html file
+  (setq css-indent-offset n) ; css-mode
+  )
+
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration
@@ -269,6 +279,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; don't show system load average in powerline
   (setq display-time-default-load-average nil)
+
+  (my-setup-indent 2) ; indent 2 spaces width
   )
 
 (defun dotspacemacs/user-config ()

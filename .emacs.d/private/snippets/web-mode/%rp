@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: erb render partial
+# key: %rp
+# --
+<%= render partial: "$0" %>

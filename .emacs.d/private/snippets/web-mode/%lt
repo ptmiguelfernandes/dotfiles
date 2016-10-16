@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: erb link_to
+# key: %lt
+# --
+<%= link_to "${1:name}", ${0:dest} %>
