@@ -34,6 +34,3 @@ alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
-
-export GEM_HOME=$HOME/.gem
-export GEM_PATH=$HOME/.gem
