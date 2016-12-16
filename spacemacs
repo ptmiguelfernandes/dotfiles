@@ -283,7 +283,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (my-setup-indent 2) ; indent 2 spaces width
 
   (setq latex-run-command "pdflatex")
-
+  ;; don't insert # coding: utf-8 when saving file in ruby-mode
+  (setq ruby-insert-encoding-magic-comment nil)
   )
 
 (defun dotspacemacs/user-config ()
