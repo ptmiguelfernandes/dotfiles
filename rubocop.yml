@@ -8,13 +8,17 @@ AllCops:
     - "db/**/*"
 
 Metrics/LineLength:
-  Enabled: false
+  Max: 100
 
 Metrics/MethodLength:
-  Enabled: false
+  Max: 20
 
 Metrics/ClassLength:
-  Enabled: false
+  Max: 150
+
+Metrics/AbcSize:
+  Exclude:
+    - "test/integration/**/*"
 
 Documentation:
   Enabled: false
@@ -40,4 +44,7 @@ Style/ClassAndModuleChildren:
     - "config/application.rb"
 
 Performance/Casecmp:
+  Enabled: false
+
+Style/VariableNumber:
   Enabled: false

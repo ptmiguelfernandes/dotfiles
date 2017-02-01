@@ -298,6 +298,14 @@ you should place your code here."
   ;; display time
   (display-time-mode 1)
 
+  ;; -- GODAMMIT RUBY INDENTATION!!! --
+  ;; don't indent parenthesis in a weird way
+  (setq ruby-align-chained-calls nil
+        ruby-align-to-stmt-keywords nil
+        ruby-deep-indent-paren nil
+        ruby-deep-indent-paren-style nil
+        ruby-use-smie nil)
+
   ;; Make the org calendar start on monday
   (setq calendar-week-start-day 1)
 
@@ -310,10 +318,10 @@ you should place your code here."
 
   (global-set-key [f8] 'neotree-toggle)
 
-  (global-set-key (kbd "<C-down>") 'shrink-window)  
-  (global-set-key (kbd "<C-up>") 'enlarge-window)  
-  (global-set-key (kbd "<C-right>") 'shrink-window-horizontally)  
-  (global-set-key (kbd "<C-left>") 'enlarge-window-horizontally)  
+  (global-set-key (kbd "<C-down>") 'shrink-window)
+  (global-set-key (kbd "<C-up>") 'enlarge-window)
+  (global-set-key (kbd "<C-right>") 'shrink-window-horizontally)
+  (global-set-key (kbd "<C-left>") 'enlarge-window-horizontally)
   ;; If you use the find-file-in-project (ffip) library, you can open NeoTree at your directory root by adding this code to your .emacs.d:
   ;; When running projectile-switch-project (C-c p p), neotree will change root automatically.
   ;; If you use evil-mode, by default some of evil key bindings conflict with neotree-mode keys. For example, you cannot use q to hide NeoTree. To make NeoTree key bindings in effect, you can bind those keys in evil-normal-state-local-map in neotree-mode-hook, as shown in below code:
