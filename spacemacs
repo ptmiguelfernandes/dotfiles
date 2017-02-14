@@ -33,7 +33,6 @@ values."
      shell-scripts
      yaml
      colors
-     osx
      search-engine
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
@@ -271,6 +270,11 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  ;; to be able to type @ and {}
+  (setq mac-option-modifier nil
+        mac-command-modifier 'meta
+        x-select-enable-clipboard t)
 
   ;; format datetime in powerline
   (setq display-time-format "%H:%M %a %e %b")
