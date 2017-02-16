@@ -271,6 +271,9 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  ;; bash as default shell
+  (setq-default dotspacemacs-configuration-layers
+                '((shell :variables shell-default-term-shell "/bin/bash")))
   ;; to be able to type @ and {}
   (setq mac-option-modifier nil
         mac-command-modifier 'meta

@@ -18,3 +18,6 @@ PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 source /usr/local/etc/bash_completion
 source <(kubectl completion bash)
+
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
