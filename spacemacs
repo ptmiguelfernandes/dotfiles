@@ -53,7 +53,7 @@ values."
      markdown
      org
      (shell :variables
-            shell-default-shell 'multi-term
+            shell-default-shell 'ansi-term
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
@@ -270,6 +270,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
   ;; custom term colors
   (custom-set-variables
    '(term-default-bg-color nil)  ;; background color (black)
@@ -278,6 +279,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; bash as default shell
   (setq-default dotspacemacs-configuration-layers
                 '((shell :variables shell-default-term-shell "/bin/bash")))
+
   ;; to be able to type @ and {}
   (setq mac-option-modifier nil
         mac-command-modifier 'meta
