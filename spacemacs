@@ -53,7 +53,7 @@ values."
      markdown
      org
      (shell :variables
-            shell-default-shell 'ansi-term
+            shell-default-shell 'shell
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
@@ -271,15 +271,6 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
-  ;; custom term colors
-  (custom-set-variables
-   '(term-default-bg-color nil)  ;; background color (black)
-   '(term-default-fg-color "#FFF")) ;; foreground color (white)
-
-  ;; bash as default shell
-  (setq-default dotspacemacs-configuration-layers
-                '((shell :variables shell-default-term-shell "/bin/bash")))
-
   ;; to be able to type @ and {}
   (setq mac-option-modifier nil
         mac-command-modifier 'meta
@@ -305,6 +296,19 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; add custom org mode states
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+
+  ;; custom term colors
+  (custom-set-variables
+   '(term-default-bg-color nil)  ;; background color (black)
+   '(term-default-fg-color "#FFF")) ;; foreground color (white)
+
+  ;; bash as default shell
+  (setq-default dotspacemacs-configuration-layers
+    '((shell :variables shell-default-term-shell "/bin/bash")))
 
   ;; display time
   (display-time-mode 1)
