@@ -271,10 +271,11 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
-  ;; to be able to type @ and {}
-  (setq mac-option-modifier nil
-        mac-command-modifier 'meta
+
+  ;; to be able to type @ and {} with right option key
+  (setq mac-command-modifier 'meta
         x-select-enable-clipboard t)
+  (setq-default mac-right-option-modifier nil)
 
   ;; format datetime in powerline
   (setq display-time-format "%H:%M %a %e %b")
