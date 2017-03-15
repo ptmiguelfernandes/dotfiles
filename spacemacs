@@ -29,8 +29,8 @@ values."
      github
      html
      javascript
-     ;; sql
-     ;; shell-scripts
+     sql
+     shell-scripts
      yaml
      colors
      search-engine
