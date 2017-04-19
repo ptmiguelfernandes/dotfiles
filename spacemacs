@@ -33,7 +33,6 @@ values."
      shell-scripts
      yaml
      colors
-     search-engine
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       ;; auto-completion-enable-snippets-in-popup t
@@ -47,7 +46,6 @@ values."
            ruby-version-manager 'rvm
            ruby-test-runner 'ruby-test)
      ruby-on-rails
-     better-defaults
      emacs-lisp
      git
      markdown
@@ -298,6 +296,45 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; add vertical block cursors to evil-mc
+  (global-evil-mc-mode 1)
+  (defun col-at-point (point)
+    (save-excursion (goto-char point) (current-column)))
+
+  (defun evil--mc-make-cursor-at-col-append (_startcol endcol orig-line)
+    (end-of-line)
+    (when (> endcol (current-column))
+      (insert-char ?\s (- endcol (current-column))))
+    (move-to-column (- endcol 1))
+    (unless (= (line-number-at-pos) orig-line)
+      (evil-mc-make-cursor-here)))
+
+  (defun evil--mc-make-cursor-at-col-insert (startcol _endcol orig-line)
+    (end-of-line)
+    (move-to-column startcol)
+    (unless (or (= (line-number-at-pos) orig-line) (> startcol (current-column)))
+      (evil-mc-make-cursor-here)))
+
+  (defun evil--mc-make-vertical-cursors (beg end func)
+    (evil-mc-pause-cursors)
+    (apply-on-rectangle func
+                        beg end (line-number-at-pos (point)))
+    (evil-mc-resume-cursors)
+    (evil-normal-state))
+
+  (defun evil-mc-insert-vertical-cursors (beg end)
+    (interactive (list (region-beginning) (region-end)))
+    (evil--mc-make-vertical-cursors beg end 'evil--mc-make-cursor-at-col-insert)
+    (move-to-column (min (col-at-point beg) (col-at-point end))))
+
+  (defun evil-mc-append-vertical-cursors (beg end)
+    (interactive (list (region-beginning) (region-end)))
+    (evil--mc-make-vertical-cursors beg end 'evil--mc-make-cursor-at-col-append)
+    (move-to-column (- (max (col-at-point beg) (col-at-point end)) 1)))
+
+  (evil-define-key 'visual global-map "gI" 'evil-mc-insert-vertical-cursors)
+  (evil-define-key 'visual global-map "gA" 'evil-mc-append-vertical-cursors)
+
   ;; add custom org mode states
   (setq org-todo-keywords
         '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
@@ -334,10 +371,10 @@ you should place your code here."
 
   (global-set-key [f8] 'neotree-toggle)
 
-  (global-set-key (kbd "<C-down>") 'shrink-window)
-  (global-set-key (kbd "<C-up>") 'enlarge-window)
-  (global-set-key (kbd "<C-right>") 'shrink-window-horizontally)
-  (global-set-key (kbd "<C-left>") 'enlarge-window-horizontally)
+  (global-set-key (kbd "<C-M-down>") 'shrink-window)
+  (global-set-key (kbd "<C-M-up>") 'enlarge-window)
+  (global-set-key (kbd "<C-M-right>") 'shrink-window-horizontally)
+  (global-set-key (kbd "<C-M-left>") 'enlarge-window-horizontally)
   ;; If you use the find-file-in-project (ffip) library, you can open NeoTree at your directory root by adding this code to your .emacs.d:
   ;; When running projectile-switch-project (C-c p p), neotree will change root automatically.
   ;; If you use evil-mode, by default some of evil key bindings conflict with neotree-mode keys. For example, you cannot use q to hide NeoTree. To make NeoTree key bindings in effect, you can bind those keys in evil-normal-state-local-map in neotree-mode-hook, as shown in below code:
@@ -415,7 +452,7 @@ you should place your code here."
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl ox-twbs insert-shebang hide-comnt org goto-chg diminish undo-tree csv-mode uuidgen pug-mode org-projectile org-download mwim livid-mode skewer-mode simple-httpd link-hint github-search flyspell-correct-helm flyspell-correct eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff eshell-z dumb-jump company-shell column-enforce-mode color-identifiers-mode eimp paradox company-statistics adaptive-wrap hydra zenburn-theme solarized-theme magit-gh-pulls helm-spotify multi github-clone github-browse-file git-link gist gh marshal logito pcache ht yaml-mode web-beautify tagedit sql-indent slim-mode scss-mode sass-mode less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc jade-mode helm-css-scss haml-mode fish-mode company-web web-completion-data company-tern dash-functional tern coffee-mode web-mode minitest rainbow-mode rainbow-identifiers engine-mode emmet-mode xpm rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv projectile-rails rake inflections f feature-mode chruby bundler inf-ruby monokai-theme xterm-color toc-org smeargle shell-pop orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore request helm-flyspell helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flycheck-pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-prompt-extras esh-help diff-hl company-quickhelp pos-tip company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler window-numbering volatile-highlights vi-tilde-fringe spaceline s powerline smooth-scrolling restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines open-junk-file neotree move-text macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme)))
+    (winum unfill fuzzy reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl ox-twbs insert-shebang hide-comnt org goto-chg diminish undo-tree csv-mode uuidgen pug-mode org-projectile org-download mwim livid-mode skewer-mode simple-httpd link-hint github-search flyspell-correct-helm flyspell-correct eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff eshell-z dumb-jump company-shell column-enforce-mode color-identifiers-mode eimp paradox company-statistics adaptive-wrap hydra zenburn-theme solarized-theme magit-gh-pulls helm-spotify multi github-clone github-browse-file git-link gist gh marshal logito pcache ht yaml-mode web-beautify tagedit sql-indent slim-mode scss-mode sass-mode less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc jade-mode helm-css-scss haml-mode fish-mode company-web web-completion-data company-tern dash-functional tern coffee-mode web-mode minitest rainbow-mode rainbow-identifiers engine-mode emmet-mode xpm rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv projectile-rails rake inflections f feature-mode chruby bundler inf-ruby monokai-theme xterm-color toc-org smeargle shell-pop orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore request helm-flyspell helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flycheck-pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-prompt-extras esh-help diff-hl company-quickhelp pos-tip company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler window-numbering volatile-highlights vi-tilde-fringe spaceline s powerline smooth-scrolling restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines open-junk-file neotree move-text macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
@@ -454,5 +491,6 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
