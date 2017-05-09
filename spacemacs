@@ -269,6 +269,10 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  ;; use bundle exec in flycheck (rubocop fix!)
+  (setq flycheck-command-wrapper-function
+        (lambda (command)
+          (append '("bundle" "exec") command)))
 
   ;; to be able to type @ and {} with right option key
   (setq mac-command-modifier 'meta
