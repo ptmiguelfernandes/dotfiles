@@ -15,9 +15,6 @@ PROMPT_DIRTRIM=1
 force_color_prompt=yes
 stty -ixon # disable C-s terminal lock
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-
 alias ..="cd .."
 alias ..2="cd ../.."
 alias ..3="cd ../../.."
@@ -32,3 +29,6 @@ __git_ps1 ()
         printf " (%s)" "${b##refs/heads/}";
     fi
 }
+
+PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+[ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
