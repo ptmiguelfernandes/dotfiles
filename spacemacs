@@ -269,6 +269,19 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  ;; To have reek to smell-check the ruby files and fix the error in spacemacs
+  (flycheck-define-checker ruby-reek
+    "A Ruby smeel checker using reek
+See URL `https://github.com/troessner/reek'."
+    :command ("reek" "--format=xml"
+              source-original)
+    :standard-input t
+    :error-parser flycheck-parse-checkstyle
+    :modes (enh-ruby-mode ruby-mode)
+    :next-checkers ((info . ruby-rubocop)))
+
+  (add-to-list 'flycheck-checkers 'ruby-reek)
+
   ;; use bundle exec in flycheck (rubocop fix!)
   (setq flycheck-command-wrapper-function
         (lambda (command)
