@@ -295,23 +295,6 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  ;; use bundle exec in flycheck (rubocop fix!)
-  (setq flycheck-command-wrapper-function
-        (lambda (command)
-          (append '("bundle" "exec") command)))
-
-  ;; To have reek to smell-check the ruby files and fix the error in spacemacs
-  ;; (flycheck-define-checker ruby-reek
-  ;; "A Ruby smeel checker using reek
-  ;; See URL `https://github.com/troessner/reek'."
-  ;; :command ("reek" "--format=xml"
-  ;;           source-original)
-  ;; :standard-input t
-  ;; :error-parser flycheck-parse-checkstyle
-  ;; :modes (enh-ruby-mode ruby-mode)
-  ;; :next-checkers ((info . ruby-rubocop)))
-
-  ;; (add-to-list 'flycheck-checkers 'ruby-reek)
   (setq-default flycheck-disabled-checkers '(ruby-reek))
 
   ;; add vertical block cursors to evil-mc
