@@ -2,7 +2,7 @@ Rails:
   Enabled: true
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
   Exclude:
     - "bin/**/*"
     - "db/**/*"
@@ -12,6 +12,9 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   Max: 20
+
+Style/SymbolArray:
+  Enabled: false
 
 Metrics/ClassLength:
   Max: 150
