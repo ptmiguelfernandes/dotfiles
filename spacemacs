@@ -269,6 +269,8 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  (setq-default flycheck-disabled-checkers '(ruby-reek))
+
   ;; to be able to type @ and {} with right option key
   (setq mac-command-modifier 'meta
         x-select-enable-clipboard t)
@@ -294,8 +296,6 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-
-  (setq-default flycheck-disabled-checkers '(ruby-reek))
 
   ;; add vertical block cursors to evil-mc
   (global-evil-mc-mode 1)
