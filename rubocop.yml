@@ -29,9 +29,6 @@ Documentation:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
-Style/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
-
 Style/FrozenStringLiteralComment:
   Enabled: false
 
@@ -41,13 +38,11 @@ Style/BracesAroundHashParameters:
 Style/NumericPredicate:
   Enabled: false
 
-Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
-  Exclude:
-    - "config/application.rb"
-
 Performance/Casecmp:
   Enabled: false
 
 Style/VariableNumber:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
   Enabled: false
