@@ -44,7 +44,8 @@ values."
      (ruby :variables
            ruby-enable-ruby-on-rails-support t
            ruby-version-manager 'rvm
-           ruby-test-runner 'ruby-test)
+           ruby-test-runner 'rspec)
+           ;; ruby-test-runner 'ruby-test)
      ruby-on-rails
      emacs-lisp
      git
@@ -268,6 +269,10 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  ;; Regular freezes fix?
+  (setq dotspacemacs-mode-line-unicode-symbols nil)
+  (setq ediff-window-setup-function 'ediff-setup-windows-default)
 
   (setq-default flycheck-disabled-checkers '(ruby-reek))
   ;; to be able to type @ and {} with right option key
