@@ -28,8 +28,10 @@ alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
+alias ..6="cd ../../../../../.."
 alias be="bundle exec"
 alias ret="RAILS_ENV=test"
+alias rdcms="rails db:drop db:create db:migrate db:seed"
 alias rubo="bundle exec rubocop -DEc .rubocop.yml"
 
 PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
