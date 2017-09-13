@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: erb else
+# key: %else
+# --
+<% else %>
