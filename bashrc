@@ -19,7 +19,10 @@ export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 PROMPT_DIRTRIM=2
-PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]\[\033[01;34m\] \w\$( __git_ps1 ) \$\[\033[00m\] "
+export PROMPT_DIRTRIM
+
+# PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]\[\033[01;34m\] \w\$( __git_ps1 ) \$\[\033[00m\] "
+PS1="\w\$( __git_ps1 ) \$ "
 force_color_prompt=yes
 stty -ixon # disable C-s terminal lock
 

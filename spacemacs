@@ -54,7 +54,7 @@ values."
 
      (shell :variables
             shell-default-term-shell "/bin/bash"
-            ;; shell-default-shell 'shell
+            shell-default-shell 'shell
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
