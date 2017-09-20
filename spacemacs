@@ -51,8 +51,10 @@ values."
      git
      (markdown :variables markdown-live-preview-engine 'vmd)
      org
+
      (shell :variables
-            shell-default-shell 'shell
+            shell-default-term-shell "/bin/bash"
+            ;; shell-default-shell 'shell
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
@@ -351,10 +353,6 @@ you should place your code here."
   (custom-set-variables
    '(term-default-bg-color nil)  ;; background color (black)
    '(term-default-fg-color "#FFF")) ;; foreground color (white)
-
-  ;; bash as default shell
-  (setq-default dotspacemacs-configuration-layers
-    '((shell :variables shell-default-term-shell "/bin/bash")))
 
   ;; display time
   (display-time-mode 1)
