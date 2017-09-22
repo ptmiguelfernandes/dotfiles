@@ -12,3 +12,5 @@
 	oauth-token = a28d3b1be7a7e4df0da7d488a52f66e7c51cfafc
 [credential]
 	helper = osxkeychain
+[magit]
+	hideCampaign = true

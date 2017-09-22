@@ -331,6 +331,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
   (setq-default flycheck-disabled-checkers '(ruby-reek))
   ;; to be able to type @ and {} with right option key
   (setq mac-command-modifier 'meta
@@ -357,6 +358,30 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; so neotree remembers current dir
+  (defun neotree-project-dir-toggle ()
+    "Open NeoTree using the project root, using find-file-in-project,
+or the current buffer directory."
+    (interactive)
+    (let ((project-dir
+           (ignore-errors
+           ;;; Pick one: projectile or find-file-in-project
+                                        ; (projectile-project-root)
+             (ffip-project-root)
+             ))
+          (file-name (buffer-file-name))
+          (neo-smart-open t))
+      (if (and (fboundp 'neo-global--window-exists-p)
+               (neo-global--window-exists-p))
+          (neotree-hide)
+        (progn
+          (neotree-show)
+          (if project-dir
+              (neotree-dir project-dir))
+          (if file-name
+              (neotree-find file-name))))))
+
   ;; add vertical block cursors to evil-mc
   (global-evil-mc-mode 1)
 
