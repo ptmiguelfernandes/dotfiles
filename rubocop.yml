@@ -41,7 +41,7 @@ Style/NumericPredicate:
 Performance/Casecmp:
   Enabled: false
 
-Style/VariableNumber:
+Naming/VariableNumber:
   Enabled: false
 
 Style/ClassAndModuleChildren:
