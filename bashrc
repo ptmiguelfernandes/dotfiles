@@ -20,7 +20,7 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
 
-PROMPT_DIRTRIM=2
+PROMPT_DIRTRIM=3
 export PROMPT_DIRTRIM
 
 # PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]\[\033[01;34m\] \w\$( __git_ps1 ) \$\[\033[00m\] "
