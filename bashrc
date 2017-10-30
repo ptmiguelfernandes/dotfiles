@@ -17,8 +17,8 @@ export LC_ALL=en_US.UTF-8
 export PATH="$PATH:$HOME/bin"
 export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-export GEM_HOME=$HOME/.gem
-export GEM_PATH=$HOME/.gem
+export GEM_HOME=$HOME/.rvm/rubies/ruby-2.4.2
+export GEM_PATH=$HOME/.rvm/gems/ruby-2.4.2:$HOME/.rvm/gems/ruby-2.4.2@global
 
 PROMPT_DIRTRIM=3
 export PROMPT_DIRTRIM
