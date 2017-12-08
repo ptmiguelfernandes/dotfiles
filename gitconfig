@@ -1,6 +1,7 @@
 [user]
 	email = pt.miguelfernandes@gmail.com
 	name = Miguel Fernandes
+	signingKey = CC9E270693A5FAF2
 [push]
 	default = current
 [color]
@@ -14,3 +15,7 @@
 	helper = osxkeychain
 [magit]
 	hideCampaign = true
+[commit]
+	gpgsign = false
+[gpg]
+	program = gpg1

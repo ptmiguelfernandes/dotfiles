@@ -38,6 +38,8 @@ alias be="bundle exec"
 alias ret="RAILS_ENV=test"
 alias rdcms="rails db:drop db:create db:migrate db:seed"
 alias rubo="bundle exec rubocop -DEc .rubocop.yml"
+alias rsed="bin/rails db:environment:set RAILS_ENV=development"
+alias rset="bin/rails db:environment:set RAILS_ENV=test"
 
 PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 [ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
