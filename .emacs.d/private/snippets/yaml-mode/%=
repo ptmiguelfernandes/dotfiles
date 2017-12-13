@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: erb interpolation show
-# key: %=
-# --
-<%= $0 %>
