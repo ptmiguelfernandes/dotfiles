@@ -145,8 +145,8 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 17
-                               :weight normal
+                               :size 18
+                               :weight light
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
@@ -348,6 +348,9 @@ you should place your code here."
   (spaceline-spacemacs-theme)
   (spaceline-toggle-minor-modes-off)
   (setq purpose-mode nil)
+
+  ;; stop inserting automatic encoding comment on files
+  (setq ruby-insert-encoding-magic-comment nil)
 
   ;; scroll one line at a time (less "jumpy" than defaults)
   (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time

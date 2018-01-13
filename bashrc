@@ -20,9 +20,6 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export GEM_HOME=$HOME/.rvm/rubies/ruby-2.4.2
 export GEM_PATH=$HOME/.rvm/gems/ruby-2.4.2:$HOME/.rvm/gems/ruby-2.4.2@global
 
-PROMPT_DIRTRIM=3
-export PROMPT_DIRTRIM
-
 # PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]\[\033[01;34m\] \w\$( __git_ps1 ) \$\[\033[00m\] "
 PS1="\w\$( __git_ps1 ) \$ "
 force_color_prompt=yes
