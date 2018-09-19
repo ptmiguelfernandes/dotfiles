@@ -342,6 +342,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; don't insert # coding: utf-8 when saving file in ruby-mode
   (setq ruby-insert-encoding-magic-comment nil)
 
+  ;; allow input for test compilation debugging
   (add-hook 'after-init-hook 'inf-ruby-switch-setup)
   )
 
