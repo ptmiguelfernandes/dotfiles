@@ -313,6 +313,9 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq flycheck-command-wrapper-function
+        (lambda (command)
+          (append '("bundle" "exec") command)))
 
   ;; set default indentation for JS
   (setq-default js2-basic-offset 2
@@ -334,11 +337,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq web-mode-markup-indent-offset 2)
   (setq ruby-indent-level 2)
 
-
   (setq latex-run-command "pdflatex")
 
   ;; don't insert # coding: utf-8 when saving file in ruby-mode
   (setq ruby-insert-encoding-magic-comment nil)
+
+  (add-hook 'after-init-hook 'inf-ruby-switch-setup)
   )
 
 (defun dotspacemacs/user-config ()
