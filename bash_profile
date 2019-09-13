@@ -6,3 +6,8 @@ function fl() { docker run -it -v ~/:/root/ docker.freeletics.com/fl-cli-tools:l
 
 # https://stackoverflow.com/questions/12836312/postgresql-9-2-pg-dump-version-mismatch
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+alias login_init="/bin/bash --login"
+alias rvm_init="rvm use 2.6.3"
+alias init="login_init | rvm_init"

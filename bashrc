@@ -19,6 +19,8 @@ export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export GEM_PATH=$HOME/.rvm/gems/
 export GEM_HOME=$HOME/.rvm/rubies/
+export https_proxy=http://127.0.0.1:3128
+export KUBECONFIG=~/.kube/developer.kubeconfig
 
 # PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]\[\033[01;34m\] \w\$( __git_ps1 ) \$\[\033[00m\] "
 PS1="\w\$( __git_ps1 ) \$ "
