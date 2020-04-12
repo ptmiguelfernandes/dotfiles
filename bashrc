@@ -4,12 +4,16 @@ alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
 alias ..6="cd ../../../../../.."
-alias be="bundle exec"
+alias be="RUBYOPT=-W:no-deprecated bundle exec"
 alias ret="RAILS_ENV=test"
 alias rdcms="rails db:drop db:create db:migrate db:seed"
 alias rubo="bundle exec rubocop -DEc .rubocop.yml"
+alias rs="RUBYOPT=-W:no-deprecated bundle exec rails server"
+alias rc="RUBYOPT=-W:no-deprecated bundle exec rails console"
+alias rsp="RUBYOPT=-W:no-deprecated bundle exec rspec"
 alias r1="rvm use 2.7.0"
 alias r2="rvm use 2.6.5"
+alias hrc='heroku run "RUBYOPT=-W:no-deprecated rails c"'
 
 __git_ps1 ()
 {
