@@ -53,6 +53,7 @@ values."
      javascript
      yaml
      ruby-on-rails
+     neotree
      (ruby :variables
            ruby-enable-ruby-on-rails-support t
            ruby-version-manager 'rvm
@@ -365,6 +366,9 @@ you should place your code here."
   (spaceline-spacemacs-theme)
   (spaceline-toggle-minor-modes-off)
   (setq purpose-mode nil)
+
+  ;; develop branch fix
+  (setq projectile-git-submodule-command nil)
 
   ;; stop inserting automatic encoding comment on files
   (setq ruby-insert-encoding-magic-comment nil)
