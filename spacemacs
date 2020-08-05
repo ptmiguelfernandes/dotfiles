@@ -393,9 +393,6 @@ you should place your code here."
   (global-set-key (kbd "<C-M-right>") 'shrink-window-horizontally)
   (global-set-key (kbd "<C-M-left>") 'enlarge-window-horizontally)
 
-  ;; add vertical block cursors to evil-mc
-  (global-evil-mc-mode 1)
-
   ;; display time
   (display-time-mode 1)
   )
