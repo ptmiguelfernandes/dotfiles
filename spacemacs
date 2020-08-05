@@ -54,6 +54,7 @@ values."
      yaml
      ruby-on-rails
      neotree
+     (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      (ruby :variables
            ruby-enable-ruby-on-rails-support t
            ruby-version-manager 'rvm
