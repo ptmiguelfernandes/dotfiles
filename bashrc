@@ -14,6 +14,7 @@ alias rsp="RUBYOPT=-W:no-deprecated bundle exec rspec"
 alias r1="rvm use 2.7.0"
 alias r2="rvm use 2.6.5"
 alias hrc='heroku run "RUBYOPT=-W:no-deprecated rails c"'
+alias bl="/bin/bash --login; rvm use 2.7.0"
 
 __git_ps1 ()
 {
