@@ -13,8 +13,11 @@ alias rc="RUBYOPT=-W:no-deprecated bundle exec rails console"
 alias rsp="RUBYOPT=-W:no-deprecated bundle exec rspec"
 alias r1="rvm use 2.7.0"
 alias r2="rvm use 2.6.5"
-alias hrc='heroku run "RUBYOPT=-W:no-deprecated rails c"'
-alias bl="/bin/bash --login; rvm use 2.7.0"
+alias fullcheck="bundle exec rubocop -DEc .rubocop.yml; RUBYOPT=-W:no-deprecated bundle exec rspec ; brakeman"
+
+PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+[ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
+type rvm | head -n 1 # Fix "rvm is not a function" error.
 
 __git_ps1 ()
 {
@@ -34,18 +37,14 @@ export PATH="$PATH:$HOME/bin"
 # export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
 export PATH="$PATH:/usr/local/heroku/bin"
 export KUBECONFIG=~/.kube/developer.kubeconfig
-export GEM_PATH=$HOME/.rvm/gems/
+# export GEM_PATH=$HOME/.rvm/gems/
 export GEM_HOME=$HOME/.rvm/rubies/
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 
 # PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]\[\033[01;34m\] \w\$( __git_ps1 ) \$\[\033[00m\] "
 PS1="\w\$( __git_ps1 ) \$ "
 force_color_prompt=yes
 stty -ixon # disable C-s terminal lock
-
-PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-[ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
 
 # FL-CLI-Tools
 function fl() {
@@ -53,3 +52,6 @@ function fl() {
   docker pull 524690225562.dkr.ecr.eu-west-1.amazonaws.com/fl-cli-tools:latest;
   docker run --rm -it -v ~/:/root/ 524690225562.dkr.ecr.eu-west-1.amazonaws.com/fl-cli-tools:latest ${*:1};
 }
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
