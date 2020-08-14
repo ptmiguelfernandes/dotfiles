@@ -61,7 +61,7 @@ values."
            ruby-test-runner 'rspec)
            ;; ruby-test-runner 'ruby-test)
      (shell :variables
-            shell-default-shell 'term
+            shell-default-shell 'inferior-shell
             shell-default-height 30
             shell-default-position 'bottom)
 
