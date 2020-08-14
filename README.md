@@ -10,8 +10,9 @@ Vim plugins are installed as git submodules. Check these out by running the comm
 
 Create symlinks:
 
-    ln -s ~/dotfiles/bashrc ~/.bashrc
     ln -s ~/dotfiles/bash_profile ~/.bash_profile
+    ln -s ~/dotfiles/bashrc ~/.bashrc
+    ln -s ~/dotfiles/profile ~/.profile
     ln -s ~/dotfiles/spacemacs ~/.spacemacs
     ln -s ~/dotfiles/private/snippets/ ~/.emacs.d/private/snippets
     ln -s ~/dotfiles/vimrc ~/.vimrc
