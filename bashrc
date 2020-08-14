@@ -29,11 +29,9 @@ export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export PATH="$PATH:$HOME/bin"
-# export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
 export PATH="$PATH:/usr/local/heroku/bin"
 export KUBECONFIG=~/.kube/developer.kubeconfig
 
-# PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]\[\033[01;34m\] \w\$( __git_ps1 ) \$\[\033[00m\] "
 PS1="\w\$( __git_ps1 ) \$ "
 force_color_prompt=yes
 [[ $- == *i* ]] && stty -ixon # disable C-s terminal lock
@@ -46,4 +44,5 @@ function fl() {
 }
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
