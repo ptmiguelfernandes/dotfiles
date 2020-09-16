@@ -11,8 +11,9 @@ alias rubo="bundle exec rubocop -DEc .rubocop.yml"
 alias rs="RUBYOPT=-W:no-deprecated bundle exec rails server"
 alias rc="RUBYOPT=-W:no-deprecated bundle exec rails console"
 alias rsp="RUBYOPT=-W:no-deprecated bundle exec rspec"
-alias r1="rvm use 2.7.0"
-alias r2="rvm use 2.6.5"
+alias r1="rvm use 2.7.1"
+alias r2="rvm use 2.7.0"
+alias r3="rvm use 2.6.5"
 alias fullcheck="bundle exec rubocop -DEc .rubocop.yml; RUBYOPT=-W:no-deprecated bundle exec rspec ; brakeman"
 
 export BASH_ENV=~/.bashrc
