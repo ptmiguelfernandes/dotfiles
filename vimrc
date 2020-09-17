@@ -1,6 +1,5 @@
 ﻿set nocompatible
 
-execute pathogen#infect()
 syntax on
 filetype plugin indent on
 set ignorecase
@@ -32,7 +31,6 @@ let $LANG = "en_US"
 "syntax enable
 "set background=light
 "colorscheme solarized
-colorscheme xoria256
 
 "Trailing whitespace
 function! <SID>StripTrailingWhitespaces()
