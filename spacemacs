@@ -30,15 +30,25 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(vimscript
-     python
-     sql
+   '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
+     auto-completion
+     better-defaults
+     emacs-lisp
+     git
+     markdown
+     org
+     (shell :variables
+            shell-default-shell 'vterm
+            shell-default-term-shell "/bin/zsh"
+            shell-default-height 30
+            shell-default-position 'bottom
+     )
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
@@ -49,11 +59,11 @@ values."
                       auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-private-snippets-directory nil
      )
-     better-defaults
-     emacs-lisp
-     git
-     markdown
-     org
+     (ruby :variables
+           ruby-enable-ruby-on-rails-support t
+           ruby-version-manager 'rvm
+           ruby-test-runner 'rspec
+     )
      spell-checking
      syntax-checking
      version-control
@@ -62,20 +72,6 @@ values."
      javascript
      yaml
      ruby-on-rails
-     neotree
-     (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-     (ruby :variables
-           ruby-enable-ruby-on-rails-support t
-           ruby-version-manager 'rvm
-           ruby-test-runner 'rspec)
-           ;; ruby-test-runner 'ruby-test)
-     (shell :variables
-            ;; shell-default-shell 'inferior-shell
-            shell-default-shell 'vterm
-            shell-default-term-shell "/bin/zsh"
-            shell-default-height 30
-            shell-default-position 'bottom)
-
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -326,37 +322,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq flycheck-command-wrapper-function
-        (lambda (command)
-          (append '("bundle" "exec") command)))
-
-  ;; set default indentation for JS
-  (setq-default js2-basic-offset 2
-                js-indent-level 2)
-  ;; to be able to type @ and {} with right option key
-  (setq mac-command-modifier 'meta
-        x-select-enable-clipboard t)
-  (setq-default mac-right-option-modifier nil)
-
-  ;; format datetime in powerline
-  (setq display-time-format "%H:%M %a %e %b")
-
-  ;; disable erroring python-json checker
-  (setq-default flycheck-disabled-checkers '(json-python-json ruby-reek))
-
-  ;; don't show system load average in powerline
-  (setq display-time-default-load-average nil)
-
-  (setq web-mode-markup-indent-offset 2)
-  (setq ruby-indent-level 2)
-
-  (setq latex-run-command "pdflatex")
-
-  ;; don't insert # coding: utf-8 when saving file in ruby-mode
-  (setq ruby-insert-encoding-magic-comment nil)
-
-  ;; allow input for test compilation debugging
-  (add-hook 'after-init-hook 'inf-ruby-switch-setup)
   )
 
 (defun dotspacemacs/user-config ()
@@ -366,42 +331,36 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; fix neotree create file/folder without reloading issue
-  (setq helm-split-window-inside-p t)
-  ;; powerline configuration
-  (require 'spaceline-config)
-  (spaceline-spacemacs-theme)
-  (spaceline-toggle-minor-modes-off)
-  (setq purpose-mode nil)
 
-  ;; develop branch fix
-  (setq projectile-git-submodule-command nil)
+  (setq neo-theme 'nerd)
+  ;; format datetime in powerline
+  (setq display-time-format "%H:%M %a, %e %b")
+  (display-time-mode 1)
 
-  ;; stop inserting automatic encoding comment on files
-  (setq ruby-insert-encoding-magic-comment nil)
-
-  ;; scroll one line at a time (less "jumpy" than defaults)
-  (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time
-  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-  (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-
-  ;; add custom org mode states
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
-
-  ;; custom shell colors
-  (custom-set-variables
-   '(term-default-bg-color nil)  ;; background color (black)
-   '(term-default-fg-color "#FFF")) ;; foreground color (white)
+  (setq display-time-default-load-average nil)
 
   (global-set-key (kbd "<C-M-down>") 'shrink-window)
   (global-set-key (kbd "<C-M-up>") 'enlarge-window)
   (global-set-key (kbd "<C-M-right>") 'shrink-window-horizontally)
   (global-set-key (kbd "<C-M-left>") 'enlarge-window-horizontally)
 
-  ;; display time
-  (display-time-mode 1)
-  )
+  ;; enable multi cursors by default
+  (global-evil-mc-mode 1)
+
+  ;; to be able to type @ and {} with right option key
+  (setq mac-command-modifier 'meta
+        x-select-enable-clipboard t)
+  (setq-default mac-right-option-modifier nil)
+
+  ;; fix neotree create file/folder without reloading issue
+  ;; (setq helm-split-window-inside-p t)
+
+  ;; powerline configuration
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme)
+  (spaceline-toggle-minor-modes-off)
+  (setq purpose-mode nil)
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -412,41 +371,10 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lv transient yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yasnippet-classic-snippets yasnippet-snippets treepy graphql org-mime sql-indent yaml-mode xterm-color web-mode web-beautify tagedit slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv pug-mode projectile-rails rake inflections multi-term minitest livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc helm-css-scss haml-mode feature-mode eshell-z eshell-prompt-extras esh-help emmet-mode csv-mode company-web web-completion-data company-tern dash-functional tern coffee-mode chruby bundler inf-ruby unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub let-alist with-editor diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
- '(term-default-bg-color nil)
- '(term-default-fg-color "#FFF"))
+    (yaml-mode xterm-color web-mode web-beautify unfill tern tagedit smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv pug-mode projectile-rails rake inflections orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim multi-term mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-popup livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc htmlize helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck feature-mode evil-magit magit git-commit with-editor transient eshell-z eshell-prompt-extras esh-help emmet-mode diff-hl csv-mode company-web web-completion-data company-statistics company-quickhelp pos-tip company coffee-mode chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete monokai-theme ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common
-   ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection
-   ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
-
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C")))))
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (vimrc-mode helm-gtags ggtags dactyl-mode counsel-gtags counsel swiper ivy lv transient yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yasnippet-classic-snippets yasnippet-snippets treepy graphql org-mime sql-indent yaml-mode xterm-color web-mode web-beautify tagedit slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv pug-mode projectile-rails rake inflections multi-term minitest livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc helm-css-scss haml-mode feature-mode eshell-z eshell-prompt-extras esh-help emmet-mode csv-mode company-web web-completion-data company-tern dash-functional tern coffee-mode chruby bundler inf-ruby unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub let-alist with-editor diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
- '(term-default-bg-color nil)
- '(term-default-fg-color "#FFF"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C"))))
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-)
+ )
