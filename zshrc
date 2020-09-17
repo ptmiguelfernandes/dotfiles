@@ -13,7 +13,19 @@ alias rc="RUBYOPT=-W:no-deprecated bundle exec rails console"
 alias rsp="RUBYOPT=-W:no-deprecated bundle exec rspec"
 alias r1="rvm use 2.7.1"
 alias r2="rvm use 2.7.0"
-alias fullcheck="bundle exec rubocop -DEc .rubocop.yml; RUBYOPT=-W:no-deprecated bundle exec rspec ; brakeman"
+alias fullcheck="bundle exec rubocop -DEc .rubocop.yml; RUBYOPT=-W:no-deprecated bundle exec rspec; brakeman"
+
+# PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
+
+# autoload -Uz vcs_info
+# precmd_vcs_info() { vcs_info }
+# precmd_functions+=( precmd_vcs_info )
+# setopt prompt_subst
+# RPROMPT=\$vcs_info_msg_0_
+# zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
+# zstyle ':vcs_info:*' enable git
+
+source $HOME/.rvm/scripts/rvm
 
 export BASH_ENV=~/.bashrc
 export TERM=xterm-256color
@@ -29,28 +41,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.rvm/gems/ruby-2.7.1/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/gems/ruby-2.7.0/bin" # Add RVM to PATH for scripting
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # FL-CLI-Tools
 function fl() { docker run -it -v ~/:/root/ docker.freeletics.com/fl-cli-tools:latest ${*:1}; }
 
-__git_ps1 ()
-{
-    local b="$(git symbolic-ref HEAD 2>/dev/null)";
-    if [ -n "$b" ]; then
-        printf " (%s)" "${b##refs/heads/}";
-    fi
-}
-
-PS1="\w\$( __git_ps1 ) \$ "
-force_color_prompt=yes
-[[ $- == *i* ]] && stty -ixon # disable C-s terminal lock
-
-if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
-    function clear(){
-        vterm_printf "51;Evterm-clear-scrollback";
-        tput clear;
-    }
-fi
-
-rvm use 2.7.1
+  # Set Spaceship ZSH as a prompt
+  autoload -U promptinit; promptinit
+  prompt spaceship
