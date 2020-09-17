@@ -70,14 +70,27 @@ values."
      csv
      html
      javascript
+     (osx :variables
+          osx-command-as       'hyper
+          osx-option-as        'none
+          osx-control-as       'control
+          osx-function-as      nil
+          osx-right-command-as 'left
+          osx-right-option-as  nil
+          osx-right-control-as 'left
+          osx-swap-option-and-command nil
+     )
      yaml
      ruby-on-rails
-     )
+     neotree
+   )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+     evil-mc
+   )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -346,14 +359,6 @@ you should place your code here."
 
   ;; enable multi cursors by default
   (global-evil-mc-mode 1)
-
-  ;; to be able to type @ and {} with right option key
-  (setq mac-command-modifier 'meta
-        x-select-enable-clipboard t)
-  (setq-default mac-right-option-modifier nil)
-
-  ;; fix neotree create file/folder without reloading issue
-  ;; (setq helm-split-window-inside-p t)
 
   ;; powerline configuration
   (require 'spaceline-config)
