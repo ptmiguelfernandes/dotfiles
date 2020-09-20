@@ -345,13 +345,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  (setq neo-theme 'nerd)
-  ;; format datetime in powerline
-  (setq display-time-format "%H:%M %a, %e %b")
-  (display-time-mode 1)
-
-  (setq display-time-default-load-average nil)
-
+  ;; enlarge and shrink window shortcuts
   (global-set-key (kbd "<C-M-down>") 'shrink-window)
   (global-set-key (kbd "<C-M-up>") 'enlarge-window)
   (global-set-key (kbd "<C-M-right>") 'shrink-window-horizontally)
@@ -360,7 +354,11 @@ you should place your code here."
   ;; enable multi cursors by default
   (global-evil-mc-mode 1)
 
+  (setq neo-theme 'nerd)
+
   ;; powerline configuration
+  (setq display-time-format "%H:%M %a, %e %b")
+  (display-time-mode 1)
   (require 'spaceline-config)
   (spaceline-spacemacs-theme)
   (spaceline-toggle-minor-modes-off)
