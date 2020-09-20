@@ -71,7 +71,7 @@ values."
      html
      javascript
      (osx :variables
-          osx-command-as       'hyper
+          osx-command-as       'meta
           osx-option-as        'none
           osx-control-as       'control
           osx-function-as      nil
