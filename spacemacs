@@ -363,6 +363,13 @@ you should place your code here."
   (spaceline-spacemacs-theme)
   (spaceline-toggle-minor-modes-off)
   (setq purpose-mode nil)
+
+  ;; indentation
+  (defun my-web-mode-hook ()
+    "Hooks for Web mode."
+    (setq web-mode-markup-indent-offset 2)
+  )
+  (add-hook 'web-mode-hook  'my-web-mode-hook)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
