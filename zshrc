@@ -81,6 +81,7 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.oh-my-zsh/templates/zshrc.zsh-template
 
 # User configuration
 
