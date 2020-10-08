@@ -354,7 +354,7 @@ you should place your code here."
   ;; enable multi cursors by default
   (global-evil-mc-mode 1)
 
-  (setq neo-theme 'nerd)
+  (setq neo-theme 'classic)
 
   ;; powerline configuration
   (setq display-time-format "%H:%M %a, %e %b")
