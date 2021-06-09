@@ -116,7 +116,7 @@ alias rubo="bundle exec rubocop -DEc .rubocop.yml"
 alias rsp="RUBYOPT=-W:no-deprecated bundle exec rspec"
 alias r1="rvm use 2.7.1"
 alias r2="rvm use 2.7.0"
-alias fullcheck="bundle exec rubocop -DEc .rubocop.yml; RUBYOPT=-W:no-deprecated bundle exec rspec; brakeman"
+alias fullcheck="bundle exec rubocop -DEc .rubocop.yml; RUBYOPT=-W:no-deprecated bundle exec rspec; i18n-tasks health; brakeman"
 
 export BASH_ENV=~/.bashrc
 export TERM=xterm-256color
@@ -144,3 +144,7 @@ source $HOME/.rvm/scripts/rvm
 export PATH="$PATH:$HOME/.rvm/bin"
 
 bindkey -v 
+
+# fix short freezes on integrated terminal
+# https://github.com/microsoft/vscode/issues/105446
+codesign --remove-signature /Applications/Visual\ Studio\ Code.app/Contents/Frameworks/Code\ Helper\ \(Renderer\).app
