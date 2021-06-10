@@ -5,9 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -55,6 +52,8 @@ ZSH_THEME="robbyrussell"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -81,7 +80,6 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.oh-my-zsh/templates/zshrc.zsh-template
 
 # User configuration
 
@@ -108,14 +106,10 @@ source ~/.oh-my-zsh/templates/zshrc.zsh-template
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-alias be="RUBYOPT=-W:no-deprecated bundle exec"
-alias ret="RAILS_ENV=test"
 alias rdcms="rails db:drop db:create db:migrate db:seed"
 alias rubo="bundle exec rubocop -DEc .rubocop.yml"
-alias rsp="RUBYOPT=-W:no-deprecated bundle exec rspec"
-alias r1="rvm use 2.7.1"
-alias r2="rvm use 2.7.0"
 alias fullcheck="bundle exec rubocop -DEc .rubocop.yml; RUBYOPT=-W:no-deprecated bundle exec rspec; i18n-tasks health; brakeman"
 
 export BASH_ENV=~/.bashrc
@@ -132,19 +126,8 @@ export PATH="$PATH:/usr/local/heroku/bin"
 # FL-CLI-Tools
 function fl() { docker run -it -v ~/:/root/ docker.freeletics.com/fl-cli-tools:latest ${*:1}; }
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source $HOME/.rvm/scripts/rvm
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
-bindkey -v 
-
-# fix short freezes on integrated terminal
-# https://github.com/microsoft/vscode/issues/105446
-codesign --remove-signature /Applications/Visual\ Studio\ Code.app/Contents/Frameworks/Code\ Helper\ \(Renderer\).app
