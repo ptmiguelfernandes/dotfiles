@@ -126,3 +126,5 @@ function fl() { docker run -it -v ~/:/root/ docker.freeletics.com/fl-cli-tools:l
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
