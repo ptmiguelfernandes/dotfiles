@@ -111,6 +111,8 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 alias rdcms="rails db:drop db:create db:migrate db:seed"
 alias rubo="bundle exec rubocop -DEc .rubocop.yml"
 alias fullcheck="bundle exec rubocop -DEc .rubocop.yml; RUBYOPT=-W:no-deprecated bundle exec rspec; i18n-tasks health; brakeman"
+alias rs="rails s"
+alias rc="rails c"
 
 export KUBECONFIG=~/.kube/developer.kubeconfig
 # https://stackoverflow.com/questions/12836312/postgresql-9-2-pg-dump-version-mismatch
